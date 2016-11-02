@@ -8,6 +8,16 @@ OMNIA=0
 if [ -x /usr/bin/thermometer ] ; then
     OMNIA=1
 fi
+SDA=0
+SDB=0
+if [ -x /usr/sbin/smartctl ] ; then
+    if [ -b /dev/sda ] ; then
+        SDA=1
+    fi
+    if [ -b /dev/sdb ] ; then
+        SDB=1
+    fi
+fi
 
 if [ "$1" = "config" ] ; then
     echo "graph_title Temperature"
@@ -25,6 +35,16 @@ if [ "$1" = "config" ] ; then
         echo "cputemp.draw LINE2"
         echo "cputemp.info The current CPU temperature."
     fi
+    if [ $SDA -eq 1 ] ; then
+        echo "sdatemp.label sda"
+        echo "sdatemp.draw LINE2"
+        echo "sdatemp.info The current sda disk temperature."
+    fi
+    if [ $SDB -eq 1 ] ; then
+        echo "sdbtemp.label sdb"
+        echo "sdbtemp.draw LINE2"
+        echo "sdbtemp.info The current sdb disk temperature."
+    fi
     exit 0
 fi
 
@@ -33,4 +53,10 @@ if [ $ROOM -eq 1 ] ; then
 fi
 if [ $OMNIA -eq 1 ] ; then
     echo "cputemp.value" $(thermometer)
+fi
+if [ $SDA -eq 1 ] ; then
+    echo "sdatemp.value" $(smartctl -a /dev/sda | sed -nr 's/.*Temperature_Celsius.* ([0-9]+)$/\1/p')
+fi
+if [ $SDB -eq 1 ] ; then
+    echo "sdbtemp.value" $(smartctl -a /dev/sdb | sed -nr 's/.*Temperature_Celsius.* ([0-9]+)$/\1/p')
 fi
