@@ -11,13 +11,17 @@ if [ "$1" = "config" ] ; then
         echo "temp.draw LINE2"
         echo "temp.info The current room temperature."
     fi
-    echo "cputemp.label CPU"
-    echo "cputemp.draw LINE2"
-    echo "cputemp.info The current CPU temperature."
+    if [ -x /usr/bin/thermometer ] ; then
+        echo "cputemp.label CPU"
+        echo "cputemp.draw LINE2"
+        echo "cputemp.info The current CPU temperature."
+    fi
     exit 0
 fi
 
 if [ -f /tmp/current-temp ] ; then
     echo "temp.value" $(cat /tmp/current-temp)
 fi
-echo "cputemp.value" $(thermometer)
+if [ -x /usr/bin/thermometer ] ; then
+    echo "cputemp.value" $(thermometer)
+fi
