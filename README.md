@@ -2,6 +2,8 @@
 Various scripts for use in OpenWRT
 
 * Reading temperature from USB thermometer
+* Munin plugins
+    * USB thermometer
 
 ## Installation
 

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$1" = "config" ] ; then
+  echo "graph_title Temperature"                                                           
+  echo "graph_args --base 1000 -l 0 -u 40"                                                 
+  echo "graph_vlabel room temperature"                                                     
+  echo "graph_category other"                                                              
+  echo "graph_info This graph shows the room temperature."                                 
+  echo "temp.label temperature"                                                            
+  echo "temp.draw LINE2"                                                                   
+  echo "temp.info The current room temperature."                                                         
+  exit 0
+fi
+
+echo "temp.value" $(cat /tmp/current-temp)              
