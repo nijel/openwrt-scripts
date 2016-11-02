@@ -1,0 +1,6 @@
+#!/bin/sh
+# Deamon to read temperature from USB connected thermometer
+
+while read temp < /dev/ttyUSB0 ; do
+echo $temp | sed "s@+\\?\\([0-9.-]\\+\\)C@\\1@" > /tmp/current-temp
+done
