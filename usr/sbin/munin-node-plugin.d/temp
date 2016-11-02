@@ -31,19 +31,19 @@ if [ "$1" = "config" ] ; then
         echo "temp.info The current room temperature."
     fi
     if [ $OMNIA -eq 1 ] ; then
-        echo "cputemp.label CPU"
-        echo "cputemp.draw LINE2"
-        echo "cputemp.info The current CPU temperature."
+        echo "cpu.label CPU"
+        echo "cpu.draw LINE2"
+        echo "cpu.info The current CPU temperature."
     fi
     if [ $SDA -eq 1 ] ; then
-        echo "sdatemp.label sda"
-        echo "sdatemp.draw LINE2"
-        echo "sdatemp.info The current sda disk temperature."
+        echo "sda.label sda"
+        echo "sda.draw LINE2"
+        echo "sda.info The current sda disk temperature."
     fi
     if [ $SDB -eq 1 ] ; then
-        echo "sdbtemp.label sdb"
-        echo "sdbtemp.draw LINE2"
-        echo "sdbtemp.info The current sdb disk temperature."
+        echo "sdb.label sdb"
+        echo "sdb.draw LINE2"
+        echo "sdb.info The current sdb disk temperature."
     fi
     exit 0
 fi
@@ -52,11 +52,11 @@ if [ $ROOM -eq 1 ] ; then
     echo "temp.value" $(cat /tmp/current-temp)
 fi
 if [ $OMNIA -eq 1 ] ; then
-    echo "cputemp.value" $(thermometer | sed -rn 's/CPU.*[[:space:]]([0-9]+)$/\1/p')
+    echo "cpu.value" $(thermometer | sed -rn 's/CPU.*[[:space:]]([0-9]+)$/\1/p')
 fi
 if [ $SDA -eq 1 ] ; then
-    echo "sdatemp.value" $(smartctl -a /dev/sda | sed -nr 's/.*Temperature_Celsius.*[[:space:]]([0-9]+)$/\1/p')
+    echo "sda.value" $(smartctl -a /dev/sda | sed -nr 's/.*Temperature_Celsius.*[[:space:]]([0-9]+)$/\1/p')
 fi
 if [ $SDB -eq 1 ] ; then
-    echo "sdbtemp.value" $(smartctl -a /dev/sdb | sed -nr 's/.*Temperature_Celsius.*[[:space:]]([0-9]+)$/\1/p')
+    echo "sdb.value" $(smartctl -a /dev/sdb | sed -nr 's/.*Temperature_Celsius.*[[:space:]]([0-9]+)$/\1/p')
 fi
