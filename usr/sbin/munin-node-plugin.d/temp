@@ -1,17 +1,26 @@
 #!/bin/sh
 
+ROOM=0
+if [ -f /tmp/current-temp ] ; then
+    ROOM=1
+fi
+OMNIA=0
+if [ -x /usr/bin/thermometer ] ; then
+    OMNIA=1
+fi
+
 if [ "$1" = "config" ] ; then
     echo "graph_title Temperature"
     echo "graph_args --base 1000 -l 0 -u 40"
     echo "graph_vlabel room temperature"
     echo "graph_category other"
     echo "graph_info This graph shows the room temperature."
-    if [ -f /tmp/current-temp ] ; then
+    if [ $ROOM -eq 1 ] ; then
         echo "temp.label temperature"
         echo "temp.draw LINE2"
         echo "temp.info The current room temperature."
     fi
-    if [ -x /usr/bin/thermometer ] ; then
+    if [ $OMNIA -eq 1 ] ; then
         echo "cputemp.label CPU"
         echo "cputemp.draw LINE2"
         echo "cputemp.info The current CPU temperature."
@@ -19,9 +28,9 @@ if [ "$1" = "config" ] ; then
     exit 0
 fi
 
-if [ -f /tmp/current-temp ] ; then
+if [ $ROOM -eq 1 ] ; then
     echo "temp.value" $(cat /tmp/current-temp)
 fi
-if [ -x /usr/bin/thermometer ] ; then
+if [ $OMNIA -eq 1 ] ; then
     echo "cputemp.value" $(thermometer)
 fi
