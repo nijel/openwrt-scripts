@@ -1,12 +1,13 @@
 #!/bin/sh /etc/rc.common
+
 START=80
-SERVICE_DAEMONIZE=1
-SERVICE_WRITE_PID=1
 
-start() {
-	service_start /usr/sbin/synology-remote-mpd
-}
+USE_PROCD=1
 
-stop() {
-	service_stop /usr/sbin/synology-remote-mpd
+PROG=/usr/sbin/synology-remote-mpd
+
+start_service() {
+    procd_open_instance
+    procd_set_param command "$PROG"
+    procd_close_instance
 }
