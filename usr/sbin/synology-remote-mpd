@@ -34,8 +34,10 @@ class KeyboardHandler(object):
 
 class SynologyHandler(KeyboardHandler):
     def mpc(self, *args):
-        print 'mpc', repr(args)
-        subprocess.call(['mpc'] + args)
+        cmd = ['mpc']
+        cmd.extend(args)
+        print repr(cmd)
+        subprocess.call(cmd)
 
     def clear(self):
         self.mpc('clear')
