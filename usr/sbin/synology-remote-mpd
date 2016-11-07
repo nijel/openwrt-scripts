@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import evdev
+
+DEVICE = '/dev/input/event1'
+
+
+def main():
+    dev = Device(DEVICE)
+    while 1:
+        dev.poll()
+        time.sleep(0.5)
+        print dev.buttons.pop()
+
+
+if __name__ == "__main__":
+    main()
