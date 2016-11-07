@@ -64,6 +64,18 @@ class SynologyHandler(KeyboardHandler):
     def KEY_KPMINUS(self, event):
         self.mpc('volume', '-1')
 
+    def KEY_NUMLOCK(self, event):
+        self.mpc('stop')
+
+    def KEY_SPACE(self, event)
+        self.mpc('toggle')
+
+    def KEY_P(self, event):
+        self.mpc('prev')
+
+    def KEY_N(self, event):
+        self.mpc('next')
+
 
 if __name__ == "__main__":
     SynologyHandler().main()
