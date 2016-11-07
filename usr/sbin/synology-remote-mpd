@@ -12,7 +12,12 @@ def main():
     dev = Device(DEVICE)
     for event in dev.loop():
         if event.type == 'EV_KEY':
-            print event
+            if event.type == 0:
+                # release
+            elif event.type == 1:
+                print 'PRESS', event
+            elif event.type == 2:
+                print 'REPEAT', event
 
 
 if __name__ == "__main__":
