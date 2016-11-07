@@ -67,7 +67,7 @@ class SynologyHandler(KeyboardHandler):
     def KEY_NUMLOCK(self, event):
         self.mpc('stop')
 
-    def KEY_SPACE(self, event)
+    def KEY_SPACE(self, event):
         self.mpc('toggle')
 
     def KEY_P(self, event):
