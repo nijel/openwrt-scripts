@@ -76,6 +76,12 @@ class SynologyHandler(KeyboardHandler):
     def KEY_N(self, event):
         self.mpc('next')
 
+    def KEY_KP1(self, event):
+        self.mpc('repeat')
+
+    def KEY_KPENTER(self, event):
+        self.mpc('random')
+
 
 if __name__ == "__main__":
     SynologyHandler().main()
