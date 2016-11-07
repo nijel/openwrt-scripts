@@ -45,6 +45,7 @@ class SynologyHandler(KeyboardHandler):
     def play_stream(self, url):
         self.clear()
         self.mpc('add', url)
+        self.mpc('play')
 
     def KEY_KP9(self, event):
         self.play_stream(ONE_URL)
