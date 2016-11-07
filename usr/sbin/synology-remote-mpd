@@ -38,4 +38,4 @@ class SynologyHandler(KeyboardHandler):
 
 
 if __name__ == "__main__":
-    main()
+    SynologyHandler().main()
