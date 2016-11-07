@@ -2,10 +2,19 @@
 """Simple event device listener"""
 
 import time
+import subprocess
 
 from evdev import Device
 
+# Device to process
 DEVICE = '/dev/input/event1'
+
+# Stream URLs
+
+ONE_URL = 'http://icecast2.play.cz/radiobeat128.mp3'
+TWO_URL = 'http://icecast5.play.cz/rockzone128.mp3'
+THREE_URL = 'http://ice.abradio.cz:8000/city80128.mp3'
+FOUR_URL = 'http://ice.abradio.cz:8000/city90128.mp3'
 
 
 class KeyboardHandler(object):
@@ -24,17 +33,28 @@ class KeyboardHandler(object):
 
 
 class SynologyHandler(KeyboardHandler):
+    def mpc(self, *args):
+        print 'mpc', *args
+        subprocess.call('mpc', *args)
+
+    def clear(self):
+        self.mpc('clear')
+
+    def play_stream(self, url):
+        self.clear()
+        self.mpc('add', url)
+
     def KEY_KP9(self, event):
-        print 'ONE'
+        self.play_stream(ONE_URL)
 
     def KEY_KP0(self, event):
-        print 'TWO'
+        self.play_stream(TWO_URL)
 
     def KEY_KPDOT(self, event):
-        print 'THREE'
+        self.play_stream(THREE_URL)
 
     def KEY_102ND(self, event):
-        print 'FOUR'
+        self.play_stream(FOUR_URL)
 
 
 if __name__ == "__main__":
