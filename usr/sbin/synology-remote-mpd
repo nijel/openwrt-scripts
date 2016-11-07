@@ -8,17 +8,33 @@ from evdev import Device
 DEVICE = '/dev/input/event1'
 
 
-def main():
-    dev = Device(DEVICE)
-    for event in dev.loop():
-        if event.type == 'EV_KEY':
-            if event.value == 0:
-                # release
-                pass
-            elif event.value == 1:
-                print 'PRESS', event
-            elif event.value == 2:
-                print 'REPEAT', event
+class KeyboardHandler(object):
+    def main():
+        dev = Device(DEVICE)
+        for event in dev.loop():
+            if event.type == 'EV_KEY':
+                # 0 - release, 1 - press, 2 - repeat
+                if event.value == 0:
+                    # key release
+                    continue
+                if hasattr(self, event.code.lower()):
+                    getattr(self, event.code)(event)
+                else:
+                    print event.code
+
+
+class SynologyHandler(KeyboardHandler):
+    def KEY_KP9(self, event):
+        print 'ONE'
+
+    def KEY_KP0(self, event):
+        print 'TWO'
+
+    def KEY_KPDOT(self, event):
+        print 'THREE'
+
+    def KEY_102ND(self, event):
+        print 'FOUR'
 
 
 if __name__ == "__main__":
