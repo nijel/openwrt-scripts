@@ -7,6 +7,7 @@ Various scripts for use in OpenWRT
         * USB connected thermometer
         * Omnia CPU temperature
         * SMART disk temperature
+* Synology remote hanler to control MPD
 
 ## Requirements
 
