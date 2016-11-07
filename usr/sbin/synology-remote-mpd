@@ -59,10 +59,10 @@ class SynologyHandler(KeyboardHandler):
         self.play_stream(FOUR_URL)
 
     def KEY_KPPLUS(self, event):
-        self.mpc('volume', '+')
+        self.mpc('volume', '+1')
 
     def KEY_KPMINUS(self, event):
-        self.mpc('volume', '-')
+        self.mpc('volume', '-1')
 
 
 if __name__ == "__main__":
