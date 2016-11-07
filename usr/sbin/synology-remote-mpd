@@ -17,7 +17,7 @@ class KeyboardHandler(object):
                 if event.value == 0:
                     # key release
                     continue
-                if hasattr(self, event.code.lower()):
+                if hasattr(self, event.code):
                     getattr(self, event.code)(event)
                 else:
                     print event.code
