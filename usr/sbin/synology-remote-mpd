@@ -10,10 +10,8 @@ DEVICE = '/dev/input/event1'
 
 def main():
     dev = Device(DEVICE)
-    while 1:
-        dev.poll()
-        time.sleep(0.5)
-        print dev.buttons.pop()
+    for event in dev.loop():
+        print event
 
 
 if __name__ == "__main__":
