@@ -82,6 +82,22 @@ class SynologyHandler(KeyboardHandler):
     def KEY_KPENTER(self, event):
         self.mpc('random')
 
+    def KEY_INSERT(self, event):
+        # random 100
+        return
+
+    def KEY_LEFT(self, event):
+        # playlist
+        return
+
+    def KEY_DOWN(self, event):
+        #radio
+        return
+
+    def KEY_UP(self, event):
+        # ipod
+        return
+
 
 if __name__ == "__main__":
     SynologyHandler().main()
