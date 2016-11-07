@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Simple event device listener"""
 
+import time
+
 from evdev import Device
 
 DEVICE = '/dev/input/event1'
