@@ -9,7 +9,7 @@ DEVICE = '/dev/input/event1'
 
 
 class KeyboardHandler(object):
-    def main():
+    def main(self):
         dev = Device(DEVICE)
         for event in dev.loop():
             if event.type == 'EV_KEY':
