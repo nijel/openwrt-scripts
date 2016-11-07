@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+START=80
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+
+start() {
+	service_start /usr/sbin/synology-remote-mpd
+}
+
+stop() {
+	service_stop /usr/sbin/synology-remote-mpd
+}
