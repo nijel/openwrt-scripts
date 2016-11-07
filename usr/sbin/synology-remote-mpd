@@ -11,7 +11,8 @@ DEVICE = '/dev/input/event1'
 def main():
     dev = Device(DEVICE)
     for event in dev.loop():
-        print event
+        if event.type == 'EV_KEY':
+            print event
 
 
 if __name__ == "__main__":
