@@ -23,7 +23,7 @@ if [ -d "$snapshot" ] ; then
 fi
 
 # Create snapshot
-btrfs subvolume snapshot "$mountpoint" "$snapshot"
+btrfs subvolume snapshot -r "$mountpoint" "$snapshot"
 
 # Remove old snapshots
 ls "$snapshots/daily-*" | sort | head -n -30 | xargs -r btrfs subvolume delete 
