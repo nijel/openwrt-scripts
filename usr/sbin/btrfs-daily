@@ -1,0 +1,29 @@
+#!/bin/sh
+# Creates daily snapshots of given mountpoit and maintains 30 of them
+
+if [ -z "$1" -o ! -d "$1" ] ; then
+    echo "Usage: btrfs-daily /mount/point"
+    exit 1
+fi
+
+mountpoint="$1"
+snapshots="$1/snapshots"
+date=`date -I`
+snapshot="$snapshots/daily-$date"
+
+# Create snapshots mountpoint
+if [ ! -d "$snapshots" ] ; then
+    mkdir "$snapshots"
+fi
+
+# Test whether snapshot exists
+if [ -d "$snapshot" ] ; then
+    echo "Current snapshot already exists!"
+    exit 2
+fi
+
+# Create snapshot
+btrfs subvolume snapshot "$mountpoint" "$snapshot"
+
+# Remove old snapshots
+ls "$snapshots/daily-*" | sort | head -n -30 | xargs -r btrfs subvolume delete 

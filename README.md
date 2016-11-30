@@ -8,6 +8,8 @@ Various scripts for use in OpenWRT
         * Omnia CPU temperature
         * SMART disk temperature
 * Synology remote hanler to control MPD
+* Daily btrfs snapshots
+    * Working on arbitrary mount point, not just root as schnapps
 
 ## Requirements
 
