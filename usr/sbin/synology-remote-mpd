@@ -42,10 +42,13 @@ class SynologyHandler(KeyboardHandler):
     def clear(self):
         self.mpc('clear')
 
+    def play(self):
+        self.mpc('play')
+
     def play_stream(self, url):
         self.clear()
         self.mpc('add', url)
-        self.mpc('play')
+        self.play()
 
     def KEY_KP9(self, event):
         self.play_stream(ONE_URL)
@@ -88,7 +91,9 @@ class SynologyHandler(KeyboardHandler):
         return
 
     def KEY_LEFT(self, event):
-        # playlist
+        self.clear()
+        self.mpc('load', 'playlist')
+        self.play()
         return
 
     def KEY_DOWN(self, event):
