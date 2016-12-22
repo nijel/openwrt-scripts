@@ -92,16 +92,19 @@ class SynologyHandler(KeyboardHandler):
 
     def KEY_INSERT(self, event):
         # random 100
-        return
-
-    def KEY_LEFT(self, event):
+        self.mpc('random', 'on')
         self.clear()
         self.mpc('load', 'playlist')
         self.play()
-        return
+
+    def KEY_LEFT(self, event):
+        # playlist
+        self.clear()
+        self.mpc('load', 'playlist')
+        self.play()
 
     def KEY_DOWN(self, event):
-        #radio
+        # radio
         return
 
     def KEY_UP(self, event):
