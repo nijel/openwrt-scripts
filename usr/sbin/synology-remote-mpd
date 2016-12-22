@@ -33,6 +33,10 @@ class KeyboardHandler(object):
 
 
 class SynologyHandler(KeyboardHandler):
+    def main(self):
+        self.mpc('volume', '50')
+        super(SynologyHandler, self).main()
+
     def mpc(self, *args):
         cmd = ['mpc']
         cmd.extend(args)
