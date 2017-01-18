@@ -26,4 +26,4 @@ fi
 btrfs subvolume snapshot -r "$mountpoint" "$snapshot"
 
 # Remove old snapshots
-ls "$snapshots/daily-*" | sort | head -n -30 | xargs -r btrfs subvolume delete 
+ls -d "$snapshots"/daily-* | sort | head -n -30 | xargs -r btrfs subvolume delete
