@@ -2,4 +2,4 @@
 
 cd /mnt/storage/video
 
-su -s /usr/bin/python nobody /usr/bin/youtube-dl "$@"
+su -s /usr/bin/python nobody -- /usr/bin/youtube-dl "$@"
