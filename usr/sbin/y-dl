@@ -2,4 +2,4 @@
 
 cd /mnt/storage
 
-su -s /bin/sh nobody youtube-dl "$@"
+su -s /bin/sh -c /usr/bin/youtube-dl nobody "$@"
