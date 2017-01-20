@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd /mnt/storage
+cd /mnt/storage/video
 
-su -s /bin/sh -c /usr/bin/youtube-dl nobody "$@"
+su -s /usr/bin/python nobody /usr/bin/youtube-dl "$@"
