@@ -2,11 +2,8 @@
 # Copyright (C) 2011 OpenWrt.org
 
 START=98
-STOP=65
 
-USE_PROCD=1
-
-start_service() {
+start() {
 	[ -d /var/lib/pulse ] || {
 		mkdir -m 0755 -p /var/lib
         ln -s /mnt/storage/pulse/ /var/lib/pulse
