@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for dev in /dev/snd/* ; do 
+lxc-device --name=debian add $dev
+done
