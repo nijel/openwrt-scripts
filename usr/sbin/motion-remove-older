@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
+import datetime
+import glob
+import os
+import sys
+import time
+
+if len(sys.argv) != 3:
+    print('Usage: motion-remove-older /WILDCARD DAYS')
+    sys.exit(1)
+
+startdate = datetime.datetime.now() - datetime.timedelta(days=int(sys.argv[2]))
+starttime = time.mktime(startdate.timetuple()) 
+
+for filename in glob.glob(sys.argv[1]):
+    mtime = os.path.getmtime(filename)
+    if mtime < starttime:
+        os.unlink(filename)
