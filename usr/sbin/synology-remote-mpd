@@ -4,7 +4,7 @@
 import time
 import subprocess
 
-from evdev import Device
+from evdev import InputDevice, ecodes
 
 # Device to process
 DEVICE = '/dev/input/event1'
@@ -19,17 +19,18 @@ FOUR_URL = 'http://ice.abradio.cz:8000/city90128.mp3'
 
 class KeyboardHandler(object):
     def main(self):
-        dev = Device(DEVICE)
-        for event in dev.loop():
-            if event.type == 'EV_KEY':
+        dev = InputDevice(DEVICE)
+        for event in device.read_loop():
+            if event.type == ecodes.EV_KEY:
                 # 0 - release, 1 - press, 2 - repeat
                 if event.value == 0:
                     # key release
                     continue
-                if hasattr(self, event.code):
-                    getattr(self, event.code)(event)
+                code = ecodes.KEY[event.code]
+                if hasattr(self, code):
+                    getattr(self, code)(event)
                 else:
-                    print(event.code)
+                    print(code)
 
 
 class SynologyHandler(KeyboardHandler):
