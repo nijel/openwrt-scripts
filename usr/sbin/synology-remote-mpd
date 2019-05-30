@@ -17,9 +17,9 @@ THREE_URL = 'http://ice.abradio.cz:8000/city80128.mp3'
 FOUR_URL = 'http://ice.abradio.cz:8000/city90128.mp3'
 
 
-class KeyboardHandler(object):
+class KeyboardHandler:
     def main(self):
-        dev = InputDevice(DEVICE)
+        device = InputDevice(DEVICE)
         for event in device.read_loop():
             if event.type == ecodes.EV_KEY:
                 # 0 - release, 1 - press, 2 - repeat
@@ -36,7 +36,7 @@ class KeyboardHandler(object):
 class SynologyHandler(KeyboardHandler):
     def main(self):
         self.mpc('volume', '50')
-        super(SynologyHandler, self).main()
+        super().main()
 
     def mpc(self, *args):
         cmd = ['mpc']
