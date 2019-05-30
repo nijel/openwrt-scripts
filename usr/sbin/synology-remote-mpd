@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Simple event device listener"""
 
 import time
@@ -29,7 +29,7 @@ class KeyboardHandler(object):
                 if hasattr(self, event.code):
                     getattr(self, event.code)(event)
                 else:
-                    print event.code
+                    print(event.code)
 
 
 class SynologyHandler(KeyboardHandler):
@@ -40,7 +40,7 @@ class SynologyHandler(KeyboardHandler):
     def mpc(self, *args):
         cmd = ['mpc']
         cmd.extend(args)
-        print repr(cmd)
+        print(repr(cmd))
         subprocess.call(cmd)
 
     def clear(self):
