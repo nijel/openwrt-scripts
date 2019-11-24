@@ -35,7 +35,6 @@ class KeyboardHandler:
 
 class SynologyHandler(KeyboardHandler):
     def main(self):
-        self.mpc('volume', '50')
         super().main()
 
     def mpc(self, *args):
