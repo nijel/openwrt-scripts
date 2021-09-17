@@ -7,7 +7,7 @@ if [ -z "$1" -o ! -d "$1" ] ; then
 fi
 
 mountpoint="$1"
-snapshots="$1/snapshots"
+snapshots="$1/.snapshots"
 date=`date -I`
 snapshot="$snapshots/daily-$date"
 
